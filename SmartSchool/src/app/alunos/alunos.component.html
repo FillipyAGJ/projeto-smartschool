@@ -25,7 +25,7 @@
     <div class="form-group">
       <hr />
       <button class="btn btn-success" [disabled]="!alunoForm.valid">
-        Enviar
+        Salvar
       </button>
     </div>
   </form>
@@ -33,7 +33,7 @@
 
 <div *ngIf="!alunoSelecionado">
   <app-titulo [titulo]="titulo">
-    <button class="btn btn-success" (click)="alunoNovo()">
+    <button class="btn btn-success" (click)="alunoNovo()" *ngIf="!modalAluno">
       Cadastrar Aluno
     </button>
   </app-titulo>
@@ -61,7 +61,9 @@
             <button (click)="openModal(template)" class="btn btn-primary">
               professores
             </button>
-            <button class="btn btn-danger">desativar</button>
+            <button class="btn btn-danger" (click)="deletarAluno(aluno.id)">
+              Deletar
+            </button>
           </div>
         </td>
       </tr>

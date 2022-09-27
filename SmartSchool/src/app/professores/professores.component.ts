@@ -81,6 +81,18 @@ export class ProfessoresComponent implements OnInit {
     })
   }
 
+  deletarProfessor(id: number) {
+    this.professorService.delete(id).subscribe({
+      next: (mensage) => {
+        console.log(mensage);
+        this.getProfessores();
+      },
+      error: (err: any) => {
+        console.log(err)
+      }
+    })
+  }
+
   professorSubmit(value: number) {
     if(value) {
       this.atualizarProfessor(this.professorForm.value);

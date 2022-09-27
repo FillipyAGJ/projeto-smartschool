@@ -83,6 +83,18 @@ export class AlunosComponent implements OnInit {
     })
   }
 
+  deletarAluno(id: number) {
+    this.alunoService.delete(id).subscribe({
+      next: (mensage) => {
+        console.log(mensage);
+        this.getAlunos();
+      },
+      error: (err: any) => {
+        console.log(err)
+      }
+    })
+  }
+
   alunoSubmit(value: number) {
     if(value) {
       this.atualizarAluno(this.alunoForm.value);
@@ -90,6 +102,8 @@ export class AlunosComponent implements OnInit {
       this.cadastrarAluno(this.alunoForm.value);
     }
   }
+
+
 
   alunoSelect(aluno: Aluno) {
     this.alunoSelecionado = aluno;

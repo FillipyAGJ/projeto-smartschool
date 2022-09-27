@@ -22,7 +22,7 @@ export class AlunoService {
   }
 
   post(aluno: Aluno) {
-    return this.http.post(`${this.urlAluno}`, aluno)
+    return this.http.post(`${this.urlAluno}`, aluno);
   }
 
   put(id: number, aluno: Aluno) {
@@ -30,6 +30,6 @@ export class AlunoService {
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.urlAluno}/${id}`)
+    return this.http.delete(`${this.urlAluno}/${id}`);
   }
 }

@@ -24,7 +24,7 @@
     <div class="form-group">
       <hr />
       <button class="btn btn-success" [disabled]="!professorForm.valid">
-        Enviar
+        Salvar
       </button>
     </div>
   </form>
@@ -32,7 +32,7 @@
 
 <div *ngIf="!professorSelecionado">
   <app-titulo [titulo]="titulo">
-    <button class="btn btn-success" (click)="professorNovo()">
+    <button class="btn btn-success" (click)="professorNovo()" *ngIf="!modal">
       Cadastrar Professor
     </button>
   </app-titulo>
@@ -58,10 +58,10 @@
             >
               detalhe
             </button>
-            <button class="btn btn-primary mx-2" (click)="openModal(template)">
+            <button class="btn btn-primary" (click)="openModal(template)">
               alunos
             </button>
-            <button class="btn btn-danger">desativar</button>
+            <button class="btn btn-danger" (click)="deletarProfessor(professor.id)">Deletar</button>
           </div>
         </td>
       </tr>
