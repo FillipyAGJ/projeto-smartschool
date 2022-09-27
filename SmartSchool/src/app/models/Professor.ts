@@ -1,7 +1,9 @@
-import { Disciplina } from './Disciplina';
-
 export class Professor {
-  id: number;
-  nome: string;
-  disciplinas: Disciplina[];
+  constructor() {
+    this.id = 0;
+    this.nome = '';
+  }
+  id!: number;
+  nome!: string;
+  disciplina!: string;
 }

@@ -1,0 +1,86 @@
+<div *ngIf="professorSelecionado" class="mt-5">
+  <app-titulo
+    [titulo]="
+      professorSelecionado.id === 0
+        ? 'Novo Professor'
+        : 'Cód. Professor ' + professorSelecionado.id
+    "
+  >
+    <button class="btn btn-warning" (click)="voltar()">voltar</button>
+  </app-titulo>
+
+  <form
+    [formGroup]="professorForm"
+    (submit)="professorSubmit(professorSelecionado.id)"
+  >
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nome</label>
+      <input type="text" formControlName="nome" class="form-control" />
+    </div>
+    <!-- <div class="form-group">
+      <label for="formGroupExampleInput2">Disciplina</label>
+      <input type="text" formControlName="disciplina" class="form-control">
+    </div> -->
+    <div class="form-group">
+      <hr />
+      <button class="btn btn-success" [disabled]="!professorForm.valid">
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!professorSelecionado">
+  <app-titulo [titulo]="titulo">
+    <button class="btn btn-success" (click)="professorNovo()">
+      Cadastrar Professor
+    </button>
+  </app-titulo>
+  <table class="table">
+    <thead class="table-dark">
+      <tr class="text-center">
+        <th scope="col">id</th>
+        <th scope="col">nome</th>
+        <th scope="col">disciplina</th>
+        <th scope="col" *ngIf="!modal">opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let professor of professores" class="text-center">
+        <th scope="row">{{ professor.id }}</th>
+        <td>{{ professor.nome }}</td>
+        <td>{{ professor.disciplina }}</td>
+        <td *ngIf="!modal">
+          <div class="btn-group">
+            <button
+              (click)="professorSelect(professor)"
+              class="btn btn-warning"
+            >
+              detalhe
+            </button>
+            <button class="btn btn-primary mx-2" (click)="openModal(template)">
+              alunos
+            </button>
+            <button class="btn btn-danger">desativar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #template class="modalContainer">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-alunos [modalAluno]="true"></app-alunos>
+  </div>
+</ng-template>
